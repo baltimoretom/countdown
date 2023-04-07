@@ -11,6 +11,13 @@ document.addEventListener('DOMContentLoaded', () => {
         countdownInterval = setInterval(updateCountdown, 1000);
       }
     });
+
+    document.getElementById('stopCountdown').addEventListener('click', () => {
+      chrome.runtime.sendMessage({ message: 'stop_countdown' });
+      clearInterval(countdownInterval);
+      countdownInterval = null;
+      countdownDiv.textContent = '';
+    });
   });
 });
 
