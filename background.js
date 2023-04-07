@@ -9,6 +9,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       timeLeft = 10 * 60;
       countdownInterval = setInterval(updateCountdown, 1000);
     }
+  } else if (request.message === 'stop_countdown') {
+    clearInterval(countdownInterval);
+    countdownInterval = null;
   } else if (request.message === 'get_time_left') {
     sendResponse(timeLeft);
   }
